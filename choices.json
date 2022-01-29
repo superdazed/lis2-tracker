@@ -16,7 +16,7 @@
         
         {"decision_id":5, "choice_id":1, "choice_text":"Steal nothing", "morality_delta":1, "brotherhood_delta":0},
         {"decision_id":5, "choice_id":2, "choice_text":"Steal something yourself", "morality_delta":-1, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal something and make Daniel distract Doris", "morality_delta":-2, "brotherhood_delta":-1}
+        {"decision_id":5, "choice_id":3, "choice_text":"Steal something and make Daniel distract Doris", "morality_delta":-2, "brotherhood_delta":-1},
         
         {"decision_id":6, "choice_id":1, "choice_text":"Throw properly", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":6, "choice_id":2, "choice_text":"Throw at Daniel", "morality_delta":0, "brotherhood_delta":-1},
