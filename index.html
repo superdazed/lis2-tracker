@@ -39,7 +39,7 @@
         }
 
         async function populate() {
-            const requestURL = 'https://joshuawalker.github.io/lis2-tracker/choices.json';
+            const requestURL = 'https://raw.githubusercontent.com/joshuawalker/lis2-tracker/main/choices.json';
             const request = new Request(requestURL);
 
             const response = await fetch(request);
