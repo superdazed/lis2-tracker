@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html data-color-mode="dark" data-dark-theme="dark_dimmed">
+
+<head>
+    <meta charset="utf-8">
+    <link href="https://unpkg.com/@primer/css@^16.0.0/dist/primer.css" rel="stylesheet" />
+    <title>Life is Strange 2 — Choices Tracker</title>
+</head>
+
+<body>
+    <div class="Header mb-3">
+        <!-- Text item -->
+        <div class="Header-item">
+            Life is Strange 2 — Choices Tracker
+        </div>
+    </div>
+
+    <div class="container-lg clearfix">
+        <div class="col-4 float-left">
+            <div class="" id="">
+                <p>Morality</p>
+                <span id="morality" class="Label Label--large Label--gray-darker mr-1">0</span>
+            </div>
+    
+            <div class="" id="">
+                <p>Brotherhood</p>
+                <span id="brotherhood" class="Label Label--large Label--gray-darker mr-1">0</span>
+            </div>
+        </div>
+        <main class="col-8 float-left">
+        </main>
+      </div>
+
+    <script>
+        function init() {
+            //set morality and brotherhood to 0
+            var morality = 0;
+            var brotherhood = 0;
+        }
+
+        async function populate() {
+            const requestURL = 'https://raw.githubusercontent.com/joshuawalker/lis-2-choices/main/choices_f.json';
+            const request = new Request(requestURL);
+
+            const response = await fetch(request);
+            const data = await response.json();
+
+            populateChoices(data);
+        }
+
+        function populateChoices(obj) {
+            const main = document.querySelector('main');
+            const decisions = obj.decisions;
+            const choices = obj.choices;
+
+            //what are all the episode_id's in decisions?
+            const episode_ids = [];
+            for (let i = 0; i < decisions.length; i++) {
+                episode_ids.push(decisions[i].episode_id);
+            }
+            const episodes = [...new Set(episode_ids)];
+
+            //for each episode, create a new section
+            for (let i = 0; i < episodes.length; i++) {
+                const section = document.createElement('section');
+                section.setAttribute('id', "episode_" + episodes[i]);
+                const episode_h2 = document.createElement('h2');
+                episode_h2.innerHTML = "Episode " + episodes[i];
+                section.appendChild(episode_h2);
+                main.appendChild(section);
+            }
+
+            //for each decision, create a decision section add them to the correct episode section
+            for (let i = 0; i < decisions.length; i++) {
+                const decision = decisions[i];
+                const decision_id = decision.decision_id;
+                const episode_section = document.getElementById("episode_" + decision.episode_id);
+
+                //create the decision section
+                const decision_section = document.createElement('section');
+                const decision_h5 = document.createElement('h5');
+                decision_h5.innerHTML = decision.decision_desc;
+                decision_section.appendChild(decision_h5);
+                decision_section.classList = "decision_section";
+
+                //add the decision section to the episode section
+                episode_section.appendChild(decision_section);
+
+                //for each decision, create a dropdown of choices
+                const dropdown = document.createElement('select');
+                dropdown.setAttribute('id', decision_id);
+                dropdown.setAttribute('name', "decision_" + decision_id);
+                //dropdown.setAttribute('class', 'form-select');
+                dropdown.classList = "form-select mb-3";
+                decision_section.appendChild(dropdown);
+
+                //add a blank option to the dropdown
+                const blank_option = document.createElement('option');
+                blank_option.setAttribute('value', "d" + decision_id + "_");
+                blank_option.setAttribute('morality', 0)
+                blank_option.setAttribute('brotherhood', 0);
+                blank_option.setAttribute('choice_value', 0); //not a real choice, its blank option
+                blank_option.innerHTML = "—";
+                dropdown.appendChild(blank_option);
+
+                //for each choice in the array, add an option to the dropdown
+                for (let j = 0; j < choices.length; j++) {
+                    if (choices[j].decision_id === decision_id) {
+                        const option = document.createElement('option');
+                        option.setAttribute('value', "d" + choices[j].decision_id + "_c" + choices[j].choice_id);
+                        option.setAttribute('morality', choices[j].morality_delta)
+                        option.setAttribute('brotherhood', choices[j].brotherhood_delta);
+                        option.setAttribute('choice_value', 1);
+                        option.innerText = choices[j].choice_text;
+                        dropdown.appendChild(option);
+                    }
+                }
+            }
+
+            //when a dropdown is changed, update morality and brotherhood
+            const allDecisionResults = {
+                data: []
+            };
+
+            document.querySelectorAll('.form-select').forEach(function (dropdown) {
+                dropdown.addEventListener('change', function () {
+                    var value = dropdown.value;
+                    var decision_id = value.substring(0, value.indexOf('_'));
+
+                    var morality_delta = parseInt(dropdown.options[dropdown.selectedIndex].getAttribute('morality'));
+                    var brotherhood_delta = parseInt(dropdown.options[dropdown.selectedIndex].getAttribute('brotherhood'));
+                    var choice_value = parseInt(dropdown.options[dropdown.selectedIndex].getAttribute('choice_value'));
+
+                    //create an object to store the results of the decision
+                    const decisionResult = {
+                        decision_id: decision_id,
+                        morality_delta: morality_delta,
+                        brotherhood_delta: brotherhood_delta,
+                        choice_value: choice_value
+                    };
+
+                    var decisionIndex = allDecisionResults.data.findIndex(p => p.decision_id === decision_id)
+                    if (decisionIndex > -1) {
+                        //if choice value is null, delete the decision
+                        if (choice_value === 0) {
+                            allDecisionResults.data.splice(decisionIndex, 1);
+                        } else {
+                            allDecisionResults.data[decisionIndex] = decisionResult;
+                        }
+                    } else {
+                        allDecisionResults.data.push(decisionResult);
+                    }
+
+                    console.log(allDecisionResults)
+
+                    //add the decision results
+                    var morality = 0;
+                    var brotherhood = 0;
+                    for (let i = 0; i < allDecisionResults.data.length; i++) {
+                        morality += allDecisionResults.data[i].morality_delta;
+                        brotherhood += allDecisionResults.data[i].brotherhood_delta;
+                    }
+
+                    //show morality
+                    morality_label = document.getElementById("morality");
+                    morality_label.innerHTML = morality;
+                    if (morality < 0) {
+                        morality_label.classList = "Label Label--large Label--danger mr-1";
+                    } else {
+                        morality_label.classList = "Label Label--large Label--gray-darker mr-1";
+                    }
+
+                    //show brotherhood
+                    brotherhood_label = document.getElementById("brotherhood");
+                    brotherhood_label.innerHTML = brotherhood;
+                    if (brotherhood < 0) {
+                        brotherhood_label.classList = "Label Label--large Label--danger mr-1";
+                    } else {
+                        brotherhood_label.classList = "Label Label--large Label--gray-darker mr-1";
+                    }
+
+                });
+            });
+        }
+
+        init();
+        populate();
+    </script>
+</body>
+
+</html>
