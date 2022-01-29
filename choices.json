@@ -42,9 +42,9 @@
         {"decision_id":"california_family", "choice_id":2, "choice_text":"Beg for food yourself", "morality_delta":0, "brotherhood_delta":2},
         {"decision_id":"california_family", "choice_id":3, "choice_text":"Don't beg for food", "morality_delta":0, "brotherhood_delta":2},
         
-        {"decision_id":"Shopping", "choice_id":1, "choice_text":"Steal nothing", "morality_delta":1, "brotherhood_delta":0},
-        {"decision_id":"Shopping", "choice_id":2, "choice_text":"Steal something yourself", "morality_delta":-1, "brotherhood_delta":0},
-        {"decision_id":"Shopping", "choice_id":3, "choice_text":"Steal something and make Daniel distract Doris", "morality_delta":-2, "brotherhood_delta":-1},
+        {"decision_id":"shopping", "choice_id":1, "choice_text":"Steal nothing", "morality_delta":1, "brotherhood_delta":0},
+        {"decision_id":"shopping", "choice_id":2, "choice_text":"Steal something yourself", "morality_delta":-1, "brotherhood_delta":0},
+        {"decision_id":"shopping", "choice_id":3, "choice_text":"Steal something and make Daniel distract Doris", "morality_delta":-2, "brotherhood_delta":-1},
 
         {"decision_id":"escaping_bear_station", "choice_id":1, "choice_text":"Hit Hank and steal the camping gear", "morality_delta":-5, "brotherhood_delta":0},
         {"decision_id":"escaping_bear_station", "choice_id":2, "choice_text":"Run away with Daniel", "morality_delta":3, "brotherhood_delta":0},
