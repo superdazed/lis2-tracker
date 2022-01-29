@@ -5,39 +5,48 @@
     <meta charset="utf-8">
     <link href="https://unpkg.com/@primer/css@^16.0.0/dist/primer.css" rel="stylesheet" />
     <title>Life is Strange 2 — Choices Tracker</title>
+
+    <style>
+        .State {
+            font-size: 150%;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="Header mb-3">
+    <div class="Header mb-3 ">
         <!-- Text item -->
-        <div class="Header-item">
-            Life is Strange 2 — Choices Tracker
+        <div class="container-xl">
+            <div class="Header-item f3">
+                Life is Strange 2 — Choices Tracker
+            </div>
         </div>
     </div>
 
-    <div class="container-lg clearfix">
-        <div class="col-4 float-left">
-            <div class="" id="">
-                <p>Morality</p>
-                <span id="morality" class="Label Label--large Label--gray-darker mr-1">0</span>
+    <div class="container-xl clearfix">
+        <div class="col-lg-3 col-sm-12 p-4 float-left">
+            <div class="d-flex">  
+                <div class="mr-5" id="">
+                    <h4 class="mb-2">Morality</h4>
+                    <span id="morality" class="State State--open mr-1">0</span>
+                </div>
+        
+                <div class="" id="">
+                    <h4 class="mb-2">Brotherhood</h4>
+                    <span id="brotherhood" class="State State--open mr-1">0</span>
+                </div>
             </div>
-    
-            <div class="" id="">
-                <p>Brotherhood</p>
-                <span id="brotherhood" class="Label Label--large Label--gray-darker mr-1">0</span>
+            <div class="mt-5">
+                <p>The tracker will save your selections in this browser only, even if you refresh or close the window.</p>
+                <p>You can clear your current and saved selections using the button below.</p>
+                <button class="btn btn-danger" type="button" onclick="clearData()">Clear selections</button>
             </div>
         </div>
-        <main class="col-8 float-left">
+        <main class="col-lg-9 col-sm-12 p-4 float-left">
         </main>
       </div>
 
     <script>
-        function init() {
-            //set morality and brotherhood to 0
-            var morality = 0;
-            var brotherhood = 0;
-        }
-
         async function populate() {
             const requestURL = 'https://raw.githubusercontent.com/joshuawalker/lis2-tracker/main/choices.json';
             const request = new Request(requestURL);
@@ -64,9 +73,11 @@
             for (let i = 0; i < episodes.length; i++) {
                 const section = document.createElement('section');
                 section.setAttribute('id', "episode_" + episodes[i]);
-                const episode_h2 = document.createElement('h2');
-                episode_h2.innerHTML = "Episode " + episodes[i];
-                section.appendChild(episode_h2);
+                section.classList = "";
+                const episode_h1 = document.createElement('h1');
+                episode_h1.innerHTML = "Episode " + episodes[i];
+                episode_h1.classList = "mb-3";
+                section.appendChild(episode_h1);
                 main.appendChild(section);
             }
 
@@ -80,8 +91,9 @@
                 const decision_section = document.createElement('section');
                 const decision_h5 = document.createElement('h5');
                 decision_h5.innerHTML = decision.decision_desc;
+                decision_h5.classList = "mb-2";
                 decision_section.appendChild(decision_h5);
-                decision_section.classList = "decision_section";
+                decision_section.classList = "decision_section d-inline-block mr-6";
 
                 //add the decision section to the episode section
                 episode_section.appendChild(decision_section);
@@ -90,7 +102,7 @@
                 const dropdown = document.createElement('select');
                 dropdown.setAttribute('id', decision_id);
                 dropdown.setAttribute('name', "decision_" + decision_id);
-                //dropdown.setAttribute('class', 'form-select');
+                dropdown.setAttribute('class', 'form-select');
                 dropdown.classList = "form-select mb-3";
                 decision_section.appendChild(dropdown);
 
@@ -100,19 +112,25 @@
                 blank_option.setAttribute('morality', 0)
                 blank_option.setAttribute('brotherhood', 0);
                 blank_option.setAttribute('choice_value', 0); //not a real choice, its blank option
-                blank_option.innerHTML = "—";
+                blank_option.innerHTML = "";
                 dropdown.appendChild(blank_option);
 
                 //for each choice in the array, add an option to the dropdown
                 for (let j = 0; j < choices.length; j++) {
                     if (choices[j].decision_id === decision_id) {
                         const option = document.createElement('option');
+                        option.setAttribute('id', "lis2_" + decision_id);
                         option.setAttribute('value', "d" + choices[j].decision_id + "_c" + choices[j].choice_id);
                         option.setAttribute('morality', choices[j].morality_delta)
                         option.setAttribute('brotherhood', choices[j].brotherhood_delta);
                         option.setAttribute('choice_value', 1);
                         option.innerText = choices[j].choice_text;
                         dropdown.appendChild(option);
+
+                        var previousSelection = localStorage.getItem("lis2_" + decision_id)
+                        if (previousSelection) {
+                            document.getElementById(decision_id).value = previousSelection;
+                        }
                     }
                 }
             }
@@ -127,9 +145,13 @@
                     var value = dropdown.value;
                     var decision_id = value.substring(0, value.indexOf('_'));
 
-                    var morality_delta = parseInt(dropdown.options[dropdown.selectedIndex].getAttribute('morality'));
-                    var brotherhood_delta = parseInt(dropdown.options[dropdown.selectedIndex].getAttribute('brotherhood'));
-                    var choice_value = parseInt(dropdown.options[dropdown.selectedIndex].getAttribute('choice_value'));
+                    var dropdown_id = dropdown.id;
+                    var morality_delta = parseFloat(dropdown.options[dropdown.selectedIndex].getAttribute('morality'));
+                    var brotherhood_delta = parseFloat(dropdown.options[dropdown.selectedIndex].getAttribute('brotherhood'));
+                    var choice_value = parseFloat(dropdown.options[dropdown.selectedIndex].getAttribute('choice_value'));
+
+                    //add to localStorage
+                    localStorage.setItem("lis2_" + dropdown_id, value);
 
                     //create an object to store the results of the decision
                     const decisionResult = {
@@ -165,25 +187,32 @@
                     morality_label = document.getElementById("morality");
                     morality_label.innerHTML = morality;
                     if (morality < 0) {
-                        morality_label.classList = "Label Label--large Label--danger mr-1";
+                        morality_label.classList = "State State--closed mr-1";
                     } else {
-                        morality_label.classList = "Label Label--large Label--gray-darker mr-1";
+                        morality_label.classList = "State State--open mr-1";
                     }
 
                     //show brotherhood
                     brotherhood_label = document.getElementById("brotherhood");
                     brotherhood_label.innerHTML = brotherhood;
                     if (brotherhood < 0) {
-                        brotherhood_label.classList = "Label Label--large Label--danger mr-1";
+                        brotherhood_label.classList = "State State--closed mr-1";
                     } else {
-                        brotherhood_label.classList = "Label Label--large Label--gray-darker mr-1";
+                        brotherhood_label.classList = "State State--open mr-1";
                     }
 
                 });
             });
         }
 
-        init();
+        function clearData(){
+            localStorage.clear();
+            //clear all dropdowns
+            document.querySelectorAll('.form-select').forEach(function (dropdown) {
+                dropdown.value = "—";
+            });
+        }
+
         populate();
     </script>
 </body>
