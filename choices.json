@@ -14,20 +14,10 @@
         {"decision_id":4, "choice_id":2, "choice_text":"Beg for food yourself", "morality_delta":0, "brotherhood_delta":2},
         {"decision_id":4, "choice_id":3, "choice_text":"Don't beg for food", "morality_delta":0, "brotherhood_delta":2},
         
-        {"decision_id":5, "choice_id":1, "choice_text":"Steal nothing", "morality_delta":0, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":2, "choice_text":"Steal one item yourself", "morality_delta":-0.5, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal two items yourself", "morality_delta":-1, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal three items yourself", "morality_delta":-1.5, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal four items yourself", "morality_delta":-2, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal five items yourself", "morality_delta":-2.5, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal six items yourself", "morality_delta":-3.0, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":2, "choice_text":"Steal one item while Daniel distracts Doris", "morality_delta":-1, "brotherhood_delta":-1},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal two items while Daniel distracts Doris at least once", "morality_delta":-2, "brotherhood_delta":-1},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal three items while Daniel distracts Doris at least once", "morality_delta":-2, "brotherhood_delta":-1},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal four items while Daniel distracts Doris at least once", "morality_delta":-3, "brotherhood_delta":-1},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal five items while Daniel distracts Doris at least once", "morality_delta":-4, "brotherhood_delta":-1},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal six items while Daniel distracts Doris at least once", "morality_delta":-5, "brotherhood_delta":-1},
-
+        {"decision_id":5, "choice_id":1, "choice_text":"Steal nothing", "morality_delta":1, "brotherhood_delta":0},
+        {"decision_id":5, "choice_id":2, "choice_text":"Steal something yourself", "morality_delta":-1, "brotherhood_delta":0},
+        {"decision_id":5, "choice_id":3, "choice_text":"Steal something and make Daniel distract Doris", "morality_delta":-2, "brotherhood_delta":-1}
+        
         {"decision_id":6, "choice_id":1, "choice_text":"Throw properly", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":6, "choice_id":2, "choice_text":"Throw at Daniel", "morality_delta":0, "brotherhood_delta":-1},
         {"decision_id":6, "choice_id":3, "choice_text":"Throw at Mushroom", "morality_delta":-2, "brotherhood_delta":-2},
