@@ -1,36 +1,84 @@
 {
     "choices": [
-        {"decision_id":1, "choice_id":1, "choice_text":"Give the Chock-o-Crisp to Daniel", "morality_delta":0, "brotherhood_delta":1},
-        {"decision_id":1, "choice_id":2, "choice_text":"Give the Chock-o-Crisp to Esteban", "morality_delta":0, "brotherhood_delta":0},
-        {"decision_id":1, "choice_id":3, "choice_text":"Keep the Chock-o-Crisp for yourself", "morality_delta":0, "brotherhood_delta":-1},
+        {"decision_id":"judge_diaz", "choice_id":1, "choice_text":"Give the Chock-o-Crisp to Daniel", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"judge_diaz", "choice_id":2, "choice_text":"Give the Chock-o-Crisp to Esteban", "morality_delta":0, "brotherhood_delta":-1},
+        {"decision_id":"judge_diaz", "choice_id":3, "choice_text":"Keep the Chock-o-Crisp for yourself", "morality_delta":0, "brotherhood_delta":-1},
 
-        {"decision_id":2, "choice_id":1, "choice_text":"Confront Brett", "morality_delta":0, "brotherhood_delta":2},
-        {"decision_id":2, "choice_id":2, "choice_text":"Question Daniel", "morality_delta":1, "brotherhood_delta":-1},
+        {"decision_id":"confrontation", "choice_id":1, "choice_text":"Confront Brett", "morality_delta":0, "brotherhood_delta":2},
+        {"decision_id":"confrontation", "choice_id":2, "choice_text":"Question Daniel", "morality_delta":1, "brotherhood_delta":-1},
         
-        {"decision_id":3, "choice_id":1, "choice_text":"Stole the Chock-o-Crisp from the car", "morality_delta":-2, "brotherhood_delta":2},
-        {"decision_id":3, "choice_id":2, "choice_text":"Didn't steal the Chock-o-Crisp from the car", "morality_delta":1, "brotherhood_delta":-1},
+        {"decision_id":"parked_car", "choice_id":1, "choice_text":"Stole the Chock-o-Crisp from the car", "morality_delta":-2, "brotherhood_delta":2},
+        {"decision_id":"parked_car", "choice_id":2, "choice_text":"Didn't steal the Chock-o-Crisp from the car", "morality_delta":1, "brotherhood_delta":-1},
+
+        {"decision_id":"trail_blazing", "choice_id":1, "choice_text":"You taught Daniel about trail-blazing by showing him one of the trail blazes", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"trail_blazing", "choice_id":2, "choice_text":"You didn't teach Daniel about trail-blazing", "morality_delta":0, "brotherhood_delta":0},
+
+        {"decision_id":"tree_trunk", "choice_id":1, "choice_text":"You helped Daniel over the tree trunk and he remained clean", "morality_delta":0, "brotherhood_delta":2},
+        {"decision_id":"tree_trunk", "choice_id":2, "choice_text":"You didn't help Daniel over the tree trunk so he fell and got dirty", "morality_delta":0, "brotherhood_delta":-2},
+
+        {"decision_id":"skipping_stones", "choice_id":1, "choice_text":"You taught Daniel how to skip stones", "morality_delta":0, "brotherhood_delta":2},
+        {"decision_id":"skipping_stones", "choice_id":2, "choice_text":"You didn't teach Daniel how to skip stones", "morality_delta":0, "brotherhood_delta":0},
+
+        {"decision_id":"cheer_up", "choice_id":1, "choice_text":"You cheered up Daniel at the fishing spot", "morality_delta":0, "brotherhood_delta":0.5},
+        {"decision_id":"cheer_up", "choice_id":2, "choice_text":"You didn't cheer up Daniel at the fishing spot", "morality_delta":0, "brotherhood_delta":0},
+        {"decision_id":"cheer_up", "choice_id":2, "choice_text":"You splashed Daniel at the fishing spot", "morality_delta":0, "brotherhood_delta":-0.5},
+
+        {"decision_id":"spider_web", "choice_id":1, "choice_text":"You explained the spider web to Daniel", "morality_delta":0, "brotherhood_delta":0.5},
+        {"decision_id":"spider_web", "choice_id":2, "choice_text":"You didn't explain the spider web to Daniel", "morality_delta":0, "brotherhood_delta":0},
+        {"decision_id":"spider_web", "choice_id":2, "choice_text":"You scared Daniel when talking about the spider web", "morality_delta":0, "brotherhood_delta":-0.5},
+
+        {"decision_id":"stick_ally", "choice_id":1, "choice_text":"You played as Daniel's ally during the stick fight", "morality_delta":0, "brotherhood_delta":0.5},
+        {"decision_id":"stick_ally", "choice_id":2, "choice_text":"You didn't play as Daniel's ally during the stick fight", "morality_delta":0, "brotherhood_delta":-0.5},
+
+        {"decision_id":"moment_of_calm", "choice_id":1, "choice_text":"You joined Daniel to watch the clouds", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"moment_of_calm", "choice_id":2, "choice_text":"You didn't join Daniel to watch the clouds", "morality_delta":0, "brotherhood_delta":0},
+        {"decision_id":"moment_of_calm", "choice_id":2, "choice_text":"You couldn't join Daniel to watch the clouds because you made him too upset to watch them himself", "morality_delta":0, "brotherhood_delta":-1},
+
+        {"decision_id":"daniels_night", "choice_id":1, "choice_text":"Daniel had an OK night (even if he was upset going to sleep) and is happy about the upcoming walk", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"daniels_night", "choice_id":2, "choice_text":"Daniel got sick from the berries", "morality_delta":0, "brotherhood_delta":-1},
+        {"decision_id":"daniels_night", "choice_id":2, "choice_text":"Daniel was scared of the dark and is not happy about the upcoming walk", "morality_delta":0, "brotherhood_delta":-1},
         
-        {"decision_id":4, "choice_id":1, "choice_text":"Send Daniel to beg for food", "morality_delta":0, "brotherhood_delta":-1},
-        {"decision_id":4, "choice_id":2, "choice_text":"Beg for food yourself", "morality_delta":0, "brotherhood_delta":2},
-        {"decision_id":4, "choice_id":3, "choice_text":"Don't beg for food", "morality_delta":0, "brotherhood_delta":2},
+        {"decision_id":"california_family", "choice_id":1, "choice_text":"Send Daniel to beg for food", "morality_delta":0, "brotherhood_delta":-1},
+        {"decision_id":"california_family", "choice_id":2, "choice_text":"Beg for food yourself", "morality_delta":0, "brotherhood_delta":2},
+        {"decision_id":"california_family", "choice_id":3, "choice_text":"Don't beg for food", "morality_delta":0, "brotherhood_delta":2},
         
-        {"decision_id":5, "choice_id":1, "choice_text":"Steal nothing", "morality_delta":1, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":2, "choice_text":"Steal something yourself", "morality_delta":-1, "brotherhood_delta":0},
-        {"decision_id":5, "choice_id":3, "choice_text":"Steal something and make Daniel distract Doris", "morality_delta":-2, "brotherhood_delta":-1},
-        
-        {"decision_id":6, "choice_id":1, "choice_text":"Throw properly", "morality_delta":0, "brotherhood_delta":1},
-        {"decision_id":6, "choice_id":2, "choice_text":"Throw at Daniel", "morality_delta":0, "brotherhood_delta":-1},
-        {"decision_id":6, "choice_id":3, "choice_text":"Throw at Mushroom", "morality_delta":-2, "brotherhood_delta":-2},
-        {"decision_id":6, "choice_id":4, "choice_text":"Throw at Daniel and Mushroom", "morality_delta":-2, "brotherhood_delta":-2}
+        {"decision_id":"Shopping", "choice_id":1, "choice_text":"Steal nothing", "morality_delta":1, "brotherhood_delta":0},
+        {"decision_id":"Shopping", "choice_id":2, "choice_text":"Steal something yourself", "morality_delta":-1, "brotherhood_delta":0},
+        {"decision_id":"Shopping", "choice_id":3, "choice_text":"Steal something and make Daniel distract Doris", "morality_delta":-2, "brotherhood_delta":-1},
+
+        {"decision_id":"escaping_bear_station", "choice_id":1, "choice_text":"Hit Hank and steal the camping gear", "morality_delta":-5, "brotherhood_delta":0},
+        {"decision_id":"escaping_bear_station", "choice_id":2, "choice_text":"Run away with Daniel", "morality_delta":3, "brotherhood_delta":0},
+
+        {"decision_id":"on_hank", "choice_id":1, "choice_text":"Call Hank a 'total fucking dickhead' when talking to Brody", "morality_delta":-1, "brotherhood_delta":0},
+        {"decision_id":"on_hank", "choice_id":2, "choice_text":"Call Hank something else when talking to Brody", "morality_delta":0, "brotherhood_delta":0},
+
+        {"decision_id":"promise", "choice_id":1, "choice_text":"Promise Daniel that you won't lie to him again", "morality_delta":0, "brotherhood_delta":2},
+        {"decision_id":"promise", "choice_id":2, "choice_text":"Tell Daniel that you'll try to be honest", "morality_delta":1, "brotherhood_delta":-2},
+
+        {"decision_id":"snowball", "choice_id":1, "choice_text":"Throw properly", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"snowball", "choice_id":2, "choice_text":"Throw at Daniel", "morality_delta":0, "brotherhood_delta":-1},
+        {"decision_id":"snowball", "choice_id":3, "choice_text":"Throw at Mushroom", "morality_delta":-2, "brotherhood_delta":-2},
+        {"decision_id":"snowball", "choice_id":4, "choice_text":"Throw at Daniel and Mushroom", "morality_delta":-2, "brotherhood_delta":-2}
     ],
  
     "decisions": [
-        {"episode_id": 1, "decision_id":1, "decision_desc": "Judge Diaz"},
-        {"episode_id": 1, "decision_id":2, "decision_desc": "Confrontation"},
-        {"episode_id": 1, "decision_id":3, "decision_desc": "Parked Car"},
-        {"episode_id": 1, "decision_id":4, "decision_desc": "California Family"},
-        {"episode_id": 1, "decision_id":5, "decision_desc": "Bear Station"},
+        {"episode_id": 1, "decision_id":"judge_diaz", "decision_desc": "Judge Diaz"},
+        {"episode_id": 1, "decision_id":"confrontation", "decision_desc": "Confrontation"},
+        {"episode_id": 1, "decision_id":"parked_car", "decision_desc": "Parked Car"},
+        {"episode_id": 1, "decision_id":"trail_blazing", "decision_desc": "Trail Blazing"},
+        {"episode_id": 1, "decision_id":"tree_trunk", "decision_desc": "Tree Trunk"},
+        {"episode_id": 1, "decision_id":"skipping_stones", "decision_desc": "Skipping Stones"},
+        {"episode_id": 1, "decision_id":"cheer_up", "decision_desc": "Cheer Up"},
+        {"episode_id": 1, "decision_id":"spider_web", "decision_desc": "Spider Web"},
+        {"episode_id": 1, "decision_id":"stick_ally", "decision_desc": "Stick Ally"},
+        {"episode_id": 1, "decision_id":"moment_of_calm", "decision_desc": "A Moment of Calm"},
+        {"episode_id": 1, "decision_id":"daniels_night", "decision_desc": "Daniel's Night"},
+        {"episode_id": 1, "decision_id":"california_family", "decision_desc": "California Family"},
+        {"episode_id": 1, "decision_id":"shopping", "decision_desc": "Shopping"},
+        {"episode_id": 1, "decision_id":"escaping_bear_station", "decision_desc": "Escaping Bear Station"},
+        {"episode_id": 1, "decision_id":"on_hank", "decision_desc": "On Hank"},
+        {"episode_id": 1, "decision_id":"promise", "decision_desc": "Promise"},
 
-        {"episode_id": 2, "decision_id":6, "decision_desc": "Snowball"}
+        {"episode_id": 2, "decision_id":"snowball", "decision_desc": "Snowball"}
     ]
 }
