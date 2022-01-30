@@ -32,9 +32,9 @@
 
         {"decision_id":"moment_of_calm", "choice_id":1, "choice_text":"You joined Daniel to watch the clouds", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"moment_of_calm", "choice_id":2, "choice_text":"You didn't join Daniel to watch the clouds", "morality_delta":0, "brotherhood_delta":0},
-        {"decision_id":"moment_of_calm", "choice_id":2, "choice_text":"You couldn't join Daniel to watch the clouds because you made him too upset to watch them himself", "morality_delta":0, "brotherhood_delta":-1},
+        {"decision_id":"moment_of_calm", "choice_id":2, "choice_text":"You couldn't join Daniel to watch the clouds because you made him too upset to watch them", "morality_delta":0, "brotherhood_delta":-1},
 
-        {"decision_id":"daniels_night", "choice_id":1, "choice_text":"Daniel had an OK night (even if he was upset going to sleep) and is happy about the upcoming walk", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"daniels_night", "choice_id":1, "choice_text":"Daniel had an OK night and is happy about the upcoming walk", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"daniels_night", "choice_id":2, "choice_text":"Daniel got sick from the berries", "morality_delta":0, "brotherhood_delta":-1},
         {"decision_id":"daniels_night", "choice_id":2, "choice_text":"Daniel was scared of the dark and is not happy about the upcoming walk", "morality_delta":0, "brotherhood_delta":-1},
         
