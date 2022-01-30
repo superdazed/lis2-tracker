@@ -25,26 +25,45 @@
 
     <div class="container-xl clearfix">
         <div class="col-lg-3 col-sm-12 p-4 float-left">
-            <div class="d-flex">  
+            <div class="d-flex">
                 <div class="mr-5" id="">
                     <h4 class="mb-2">Morality</h4>
                     <span id="morality" class="State State--open mr-1">0</span>
                 </div>
-        
+
                 <div class="" id="">
                     <h4 class="mb-2">Brotherhood</h4>
                     <span id="brotherhood" class="State State--open mr-1">0</span>
                 </div>
             </div>
             <div class="mt-5">
-                <p>The tracker will save your selections in this browser only, even if you refresh or close the window.</p>
-                <p>You can clear your current and saved selections using the button below.</p>
+                <p>The tracker will save your selections in this browser only, even if you refresh or close the window.
+                </p>
+            </div>
+            <div class="mt-5">
+                <div class="form-group">
+                    <div class="form-group-header">
+                        <label for="load-choices">Copy/load choices</label>
+                        <p class="mt-2">You can copy your current selections and save them somewhere, then come back and
+                            load them again. Caution: loading choices will replace your current selections.</p>
+                    </div>
+                    <div class="form-group-body">
+                        <textarea class="form-control" id="load-choices"></textarea>
+                    </div>
+                </div>
+                <button class="btn" type="button">Copy choices</button>
+                <button class="btn btn-danger" type="button" onclick="loadChoices()">Load choices</button>
+            </div>
+            <div class="mt-5">
+                <p><strong>Clear all current and saved selections</strong></p>
+                <p>This will delete all your selections and the data saved to your browser. Make sure you've copied your
+                    selections from above.</p>
                 <button class="btn btn-danger" type="button" onclick="clearData()">Clear selections</button>
             </div>
         </div>
         <main class="col-lg-9 col-sm-12 p-4 float-left">
         </main>
-      </div>
+    </div>
 
     <script>
         async function populate() {
@@ -55,6 +74,14 @@
             const data = await response.json();
 
             populateChoices(data);
+
+            //is there allDecisionResults in localStorage?
+            if (localStorage.getItem('allDecisionResults') !== null) {
+                const allDecisionResults = JSON.parse(localStorage.getItem('allDecisionResults'));
+                calculateValues(allDecisionResults);
+                //add alldecisionresults to the load-choices field
+                document.getElementById('load-choices').value = JSON.stringify(allDecisionResults);
+            }
         }
 
         function populateChoices(obj) {
@@ -108,7 +135,9 @@
 
                 //add a blank option to the dropdown
                 const blank_option = document.createElement('option');
-                blank_option.setAttribute('value', "d" + decision_id + "_");
+                blank_option.setAttribute('value', "d_" + decision_id + "_c_" + 0);
+                blank_option.setAttribute('decision_id', decision_id);
+                blank_option.setAttribute('choice_id', 0);
                 blank_option.setAttribute('morality', 0)
                 blank_option.setAttribute('brotherhood', 0);
                 blank_option.setAttribute('choice_value', 0); //not a real choice, its blank option
@@ -120,7 +149,9 @@
                     if (choices[j].decision_id === decision_id) {
                         const option = document.createElement('option');
                         option.setAttribute('id', "lis2_" + decision_id);
-                        option.setAttribute('value', "d" + choices[j].decision_id + "_c" + choices[j].choice_id);
+                        option.setAttribute('value', "d_" + choices[j].decision_id + "_c_" + choices[j].choice_id);
+                        option.setAttribute('decision_id', choices[j].decision_id);
+                        option.setAttribute('choice_id', choices[j].choice_id);
                         option.setAttribute('morality', choices[j].morality_delta)
                         option.setAttribute('brotherhood', choices[j].brotherhood_delta);
                         option.setAttribute('choice_value', 1);
@@ -143,9 +174,9 @@
             document.querySelectorAll('.form-select').forEach(function (dropdown) {
                 dropdown.addEventListener('change', function () {
                     var value = dropdown.value;
-                    var decision_id = value.substring(0, value.indexOf('_'));
-
                     var dropdown_id = dropdown.id;
+                    var decision_id = dropdown.options[dropdown.selectedIndex].getAttribute('decision_id');
+                    var choice_id = dropdown.options[dropdown.selectedIndex].getAttribute('choice_id');
                     var morality_delta = parseFloat(dropdown.options[dropdown.selectedIndex].getAttribute('morality'));
                     var brotherhood_delta = parseFloat(dropdown.options[dropdown.selectedIndex].getAttribute('brotherhood'));
                     var choice_value = parseFloat(dropdown.options[dropdown.selectedIndex].getAttribute('choice_value'));
@@ -156,6 +187,7 @@
                     //create an object to store the results of the decision
                     const decisionResult = {
                         decision_id: decision_id,
+                        choice_id: choice_id,
                         morality_delta: morality_delta,
                         brotherhood_delta: brotherhood_delta,
                         choice_value: choice_value
@@ -173,44 +205,82 @@
                         allDecisionResults.data.push(decisionResult);
                     }
 
-                    console.log(allDecisionResults)
+                    //save the results to localStorage
+                    localStorage.setItem("allDecisionResults", JSON.stringify(allDecisionResults));
 
-                    //add the decision results
-                    var morality = 0;
-                    var brotherhood = 0;
-                    for (let i = 0; i < allDecisionResults.data.length; i++) {
-                        morality += allDecisionResults.data[i].morality_delta;
-                        brotherhood += allDecisionResults.data[i].brotherhood_delta;
-                    }
+                    //update values
+                    calculateValues(allDecisionResults);
 
-                    //show morality
-                    morality_label = document.getElementById("morality");
-                    morality_label.innerHTML = morality;
-                    if (morality < 0) {
-                        morality_label.classList = "State State--closed mr-1";
-                    } else {
-                        morality_label.classList = "State State--open mr-1";
-                    }
-
-                    //show brotherhood
-                    brotherhood_label = document.getElementById("brotherhood");
-                    brotherhood_label.innerHTML = brotherhood;
-                    if (brotherhood < 0) {
-                        brotherhood_label.classList = "State State--closed mr-1";
-                    } else {
-                        brotherhood_label.classList = "State State--open mr-1";
-                    }
+                    //add alldecisionresults to the load-choices field
+                    document.getElementById('load-choices').value = JSON.stringify(allDecisionResults);
 
                 });
             });
         }
 
-        function clearData(){
-            localStorage.clear();
-            //clear all dropdowns
-            document.querySelectorAll('.form-select').forEach(function (dropdown) {
-                dropdown.value = "—";
-            });
+        function clearData() {
+            if (confirm("This will permanently delete your selections. This action will have consequences. Keep going?") == true) {
+                localStorage.clear();
+                //clear all dropdowns
+                document.querySelectorAll('.form-select').forEach(function (dropdown) {
+                    dropdown.value = "—";
+                });
+                const allDecisionResults = { "data": [{ "decision_id": "null", "morality_delta": 0, "brotherhood_delta": 0, "choice_value": 0 }] };
+                calculateValues(allDecisionResults);
+
+                //clear the field
+                document.getElementById('load-choices').value = "";
+                window.location.reload();
+            } else {
+
+            }
+        }
+
+        function calculateValues(allDecisionResults) {
+            var morality = 0;
+            var brotherhood = 0;
+
+            //add the decision results
+            for (let i = 0; i < allDecisionResults.data.length; i++) {
+                morality += allDecisionResults.data[i].morality_delta;
+                brotherhood += allDecisionResults.data[i].brotherhood_delta;
+            }
+
+            //show morality
+            morality_label = document.getElementById("morality");
+            morality_label.innerHTML = morality;
+            if (morality < 0) {
+                morality_label.classList = "State State--closed mr-1";
+            } else {
+                morality_label.classList = "State State--open mr-1";
+            }
+
+            //show brotherhood
+            brotherhood_label = document.getElementById("brotherhood");
+            brotherhood_label.innerHTML = brotherhood;
+            if (brotherhood < 0) {
+                brotherhood_label.classList = "State State--closed mr-1";
+            } else {
+                brotherhood_label.classList = "State State--open mr-1";
+            }
+        }
+
+        function loadChoices() {
+            //get the field value
+            var loadedChoices = document.getElementById('load-choices').value;
+            localStorage.setItem("allDecisionResults", loadedChoices);
+            //parse the field value
+            loadedChoices = JSON.parse(loadedChoices);
+            calculateValues(loadedChoices);
+
+            //loop through allDecisionResults and set the dropdown values
+            for (let i = 0; i < loadedChoices.data.length; i++) {
+                var decision_id = loadedChoices.data[i].decision_id;
+                var choice_id = parseInt(loadedChoices.data[i].choice_id);
+                var dropdown = document.getElementById(decision_id);
+                var value = "d_" + decision_id + "_c_" + choice_id;
+                dropdown.value = value;
+            }
         }
 
         populate();
