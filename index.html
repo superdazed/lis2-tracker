@@ -10,7 +10,24 @@
         .State {
             font-size: 150%;
         }
+        
+        html { 
+            background: url(https://raw.githubusercontent.com/joshuawalker/lis2-tracker/main/bg.jpeg) no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-color: rgba(34, 39, 46, .1);
+            }
+        body {
+            background-color: rgb(34, 39, 46, 0);
+        }
     </style>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 
 <body>
@@ -36,30 +53,35 @@
                     <span id="brotherhood" class="State State--open mr-1">0</span>
                 </div>
             </div>
-            <div class="mt-5">
-                <p>The tracker will save your selections in this browser only, even if you refresh or close the window.
-                </p>
-            </div>
-            <div class="mt-5">
-                <div class="form-group">
-                    <div class="form-group-header">
-                        <label for="load-choices">Copy/load choices</label>
-                        <p class="mt-2">You can copy your current selections and save them somewhere, then come back and
-                            load them again. Caution: loading choices will replace your current selections.</p>
+            <details class="details-reset mt-5">
+                <summary class="btn-link">More options <span class="dropdown-caret"></summary>
+                <div class="">
+                    <div class="mt-3">
+                        <p>The tracker will save your selections in this browser only, even if you refresh or close the window.
+                        </p>
                     </div>
-                    <div class="form-group-body">
-                        <textarea class="form-control" id="load-choices"></textarea>
+                    <div class="mt-4">
+                        <div class="form-group">
+                            <div class="form-group-header">
+                                <label for="load-choices">Copy/load choices</label>
+                                <p class="mt-2">You can copy your current selections and save them somewhere, then come back and
+                                    load them again. Caution: loading choices will replace your current selections.</p>
+                            </div>
+                            <div class="form-group-body">
+                                <textarea class="form-control" id="load-choices"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn" type="button">Copy choices</button>
+                        <button class="btn btn-danger" type="button" onclick="loadChoices()">Load choices</button>
+                    </div>
+                    <div class="mt-4">
+                        <p><strong>Clear all current and saved selections</strong></p>
+                        <p>This will delete all your selections and the data saved to your browser. Make sure you've copied your
+                            selections from above. You should do this if you're starting a new game.</p>
+                        <button class="btn btn-danger" type="button" onclick="clearData()">Clear selections</button>
                     </div>
                 </div>
-                <button class="btn" type="button">Copy choices</button>
-                <button class="btn btn-danger" type="button" onclick="loadChoices()">Load choices</button>
-            </div>
-            <div class="mt-5">
-                <p><strong>Clear all current and saved selections</strong></p>
-                <p>This will delete all your selections and the data saved to your browser. Make sure you've copied your
-                    selections from above.</p>
-                <button class="btn btn-danger" type="button" onclick="clearData()">Clear selections</button>
-            </div>
+              </details>
         </div>
         <main class="col-lg-9 col-sm-12 p-4 float-left">
         </main>
@@ -88,6 +110,18 @@
             const main = document.querySelector('main');
             const decisions = obj.decisions;
             const choices = obj.choices;
+
+            //in decisions, base64 encode the decision id
+            for (let i = 0; i < decisions.length; i++) {
+                decisions[i].decision_id = btoa(decisions[i].decision_id);
+            }
+
+            //in choices, base64 encode the decision id
+            for (let i = 0; i < choices.length; i++) {
+                choices[i].decision_id = btoa(choices[i].decision_id);
+            }
+
+            console.log(decisions);
 
             //what are all the episode_id's in decisions?
             const episode_ids = [];
