@@ -10,8 +10,8 @@
         {"decision_id":"parked_car", "choice_id":1, "choice_text":"You stole the Chock-o-Crisp from the car", "morality_delta":-2, "brotherhood_delta":2},
         {"decision_id":"parked_car", "choice_id":2, "choice_text":"You didn't steal the Chock-o-Crisp from the car", "morality_delta":1, "brotherhood_delta":-1},
 
-        {"decision_id":"parked_car", "choice_id":1, "choice_text":"You insisted Daniel use the bathroom", "morality_delta":0.5, "brotherhood_delta":-0.5},
-        {"decision_id":"parked_car", "choice_id":2, "choice_text":"You didn't make Daniel use the bathroom", "morality_delta":-0.5, "brotherhood_delta":0.5},
+        {"decision_id":"forest_bathroom", "choice_id":1, "choice_text":"You insisted Daniel use the bathroom", "morality_delta":0.5, "brotherhood_delta":-0.5},
+        {"decision_id":"forest_bathroom", "choice_id":2, "choice_text":"You didn't make Daniel use the bathroom", "morality_delta":-0.5, "brotherhood_delta":0.5},
 
         {"decision_id":"trail_blazing", "choice_id":1, "choice_text":"You taught Daniel about trail-blazing by showing him one of the trail blazes", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"trail_blazing", "choice_id":2, "choice_text":"You didn't teach Daniel about trail-blazing", "morality_delta":0, "brotherhood_delta":0},
@@ -36,8 +36,8 @@
         {"decision_id":"stick_ally", "choice_id":1, "choice_text":"You played as Daniel's ally during the stick fight", "morality_delta":0, "brotherhood_delta":0.5},
         {"decision_id":"stick_ally", "choice_id":2, "choice_text":"You didn't play as Daniel's ally during the stick fight", "morality_delta":0, "brotherhood_delta":-0.5},
 
-        {"decision_id":"skipping_stones", "choice_id":1, "choice_text":"You let Daniel play Mustard Party on your phone", "morality_delta":0, "brotherhood_delta":0.5},
-        {"decision_id":"skipping_stones", "choice_id":2, "choice_text":"You didn't let Daniel play Mustard Party on your phone", "morality_delta":0.5, "brotherhood_delta":-0.5},
+        {"decision_id":"mustard_party", "choice_id":1, "choice_text":"You let Daniel play Mustard Party on your phone", "morality_delta":0, "brotherhood_delta":0.5},
+        {"decision_id":"mustard_party", "choice_id":2, "choice_text":"You didn't let Daniel play Mustard Party on your phone", "morality_delta":0.5, "brotherhood_delta":-0.5},
 
         {"decision_id":"moment_of_calm", "choice_id":1, "choice_text":"You joined Daniel to watch the clouds", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"moment_of_calm", "choice_id":2, "choice_text":"You didn't join Daniel to watch the clouds", "morality_delta":0, "brotherhood_delta":0},
