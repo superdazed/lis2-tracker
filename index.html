@@ -31,30 +31,27 @@
 </head>
 
 <body>
-    <div class="Header mb-3 ">
-        <!-- Text item -->
-        <div class="container-xl">
-            <div class="Header-item f3">
-                Life is Strange 2 — Choices Tracker
-            </div>
+    <div class="Header position-fixed left-0 right-0">
+
+        <div class="Header-item Header-item--full">
+            <h3>Life is Strange 2 — Choices Tracker</h3>
         </div>
-    </div>
+    
+        <div class="Header-item">
+            <h4 class="mr-2">Morality</h4>
+            <span id="morality" class="State State--open mr-1">0</span>
+        </div>
 
-    <div class="container-xl clearfix">
-        <div class="col-lg-3 col-sm-12 p-4 float-left">
-            <div class="d-flex">
-                <div class="mr-5" id="">
-                    <h4 class="mb-2">Morality</h4>
-                    <span id="morality" class="State State--open mr-1">0</span>
-                </div>
+        <div class="Header-item">
+            <h4 class="mr-2">Brotherhood</h4>
+            <span id="brotherhood" class="State State--open mr-1">0</span>
+        </div>
+      </div>
 
-                <div class="" id="">
-                    <h4 class="mb-2">Brotherhood</h4>
-                    <span id="brotherhood" class="State State--open mr-1">0</span>
-                </div>
-            </div>
-            <details class="details-reset mt-5">
-                <summary class="btn-link">More options <span class="dropdown-caret"></summary>
+    <div class="container-xl pt-8 clearfix">
+        <main class="col-lg-12 col-sm-12 p-4 float-left">
+            <details class="details-reset pb-3">
+                <summary class="btn-link">View more options <span class="dropdown-caret"></summary>
                 <div class="">
                     <div class="mt-3">
                         <p>The tracker will save your selections in this browser only, even if you refresh or close the window.
@@ -82,8 +79,6 @@
                     </div>
                 </div>
               </details>
-        </div>
-        <main class="col-lg-9 col-sm-12 p-4 float-left">
         </main>
     </div>
 
@@ -137,7 +132,7 @@
                 section.classList = "";
                 const episode_h1 = document.createElement('h1');
                 episode_h1.innerHTML = "Episode " + episodes[i];
-                episode_h1.classList = "mb-3";
+                episode_h1.classList = "mb-3 pt-2 border-top color-border-accent";
                 section.appendChild(episode_h1);
                 main.appendChild(section);
             }
