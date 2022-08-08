@@ -13,8 +13,8 @@
         {"decision_id":"forest_bathroom", "choice_id":1, "choice_text":"You insisted Daniel use the bathroom", "morality_delta":0.5, "brotherhood_delta":-0.5},
         {"decision_id":"forest_bathroom", "choice_id":2, "choice_text":"You didn't make Daniel use the bathroom", "morality_delta":-0.5, "brotherhood_delta":0.5},
 
-        {"decision_id":"trail_blazing", "choice_id":1, "choice_text":"You taught Daniel about trail-blazing by showing him one of the trail blazes", "morality_delta":0, "brotherhood_delta":1},
-        {"decision_id":"trail_blazing", "choice_id":2, "choice_text":"You didn't teach Daniel about trail-blazing", "morality_delta":0, "brotherhood_delta":0},
+        {"decision_id":"trail_blazing", "choice_id":1, "choice_text":"You showed one of the trail blazes to Daniel", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"trail_blazing", "choice_id":2, "choice_text":"You didn't show one of the trail blazes to Daniel", "morality_delta":0, "brotherhood_delta":0},
 
         {"decision_id":"hide_and_seek", "choice_id":1, "choice_text":"You played Hide and Seek with Daniel", "morality_delta":0, "brotherhood_delta":-0.5},
         {"decision_id":"hide_and_seek", "choice_id":2, "choice_text":"You didn't play Hide and Seek with Daniel", "morality_delta":0, "brotherhood_delta":0.5},
@@ -39,9 +39,9 @@
         {"decision_id":"mustard_party", "choice_id":1, "choice_text":"You let Daniel play Mustard Party on your phone", "morality_delta":0, "brotherhood_delta":0.5},
         {"decision_id":"mustard_party", "choice_id":2, "choice_text":"You didn't let Daniel play Mustard Party on your phone", "morality_delta":0.5, "brotherhood_delta":-0.5},
 
-        {"decision_id":"moment_of_calm", "choice_id":1, "choice_text":"You joined Daniel to watch the clouds", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"moment_of_calm", "choice_id":1, "choice_text":"You joined Daniel to watch the clouds", "morality_delta":0, "brotherhood_delta":2},
         {"decision_id":"moment_of_calm", "choice_id":2, "choice_text":"You didn't join Daniel to watch the clouds", "morality_delta":0, "brotherhood_delta":0},
-        {"decision_id":"moment_of_calm", "choice_id":3, "choice_text":"You couldn't join Daniel to watch the clouds because you made him too upset to watch them", "morality_delta":0, "brotherhood_delta":-1},
+        {"decision_id":"moment_of_calm", "choice_id":3, "choice_text":"You couldn't join Daniel to watch the clouds because you made him too upset to watch them", "morality_delta":0, "brotherhood_delta":-2},
 
         {"decision_id":"daniels_night", "choice_id":1, "choice_text":"Daniel had an OK night and is happy about the upcoming walk", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"daniels_night", "choice_id":2, "choice_text":"Daniel got sick from the berries", "morality_delta":0, "brotherhood_delta":-1},
@@ -60,6 +60,7 @@
 
         {"decision_id":"puppy", "choice_id":1, "choice_text":"You considered letting Daniel take the puppy", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"puppy", "choice_id":2, "choice_text":"You rejected Daniel's request to take the puppy", "morality_delta":0, "brotherhood_delta":-1},
+        {"decision_id":"puppy", "choice_id":2, "choice_text":"Daniel did not ask to take the puppy", "morality_delta":0, "brotherhood_delta":0},
 
         {"decision_id":"power_bear", "choice_id":1, "choice_text":"Daniel got a Power Bear toy", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"power_bear", "choice_id":2, "choice_text":"Daniel didn't get a Power Bear toy", "morality_delta":0, "brotherhood_delta":-1},
@@ -86,6 +87,7 @@
 
         {"decision_id":"room_14", "choice_id":1, "choice_text":"You told Daniel the noise is coming from a TV show", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"room_14", "choice_id":2, "choice_text":"You told Daniel the noise is because someone is having sex", "morality_delta":0, "brotherhood_delta":-1},
+        {"decision_id":"room_14", "choice_id":3, "choice_text":"You did not hear the noise from the other room", "morality_delta":0, "brotherhood_delta":0},
 
         {"decision_id":"turn_it_down", "choice_id":1, "choice_text":"You told Daniel to turn the TV volume down", "morality_delta":0.5, "brotherhood_delta":-0.5},
         {"decision_id":"turn_it_down", "choice_id":2, "choice_text":"You didn't tell Daniel to turn the TV volume down", "morality_delta":0, "brotherhood_delta":0},
@@ -111,8 +113,19 @@
         {"decision_id":"snowball", "choice_id":3, "choice_text":"You aimed at Mushroom", "morality_delta":-2, "brotherhood_delta":-2},
         {"decision_id":"snowball", "choice_id":4, "choice_text":"You aimed at Daniel and Mushroom", "morality_delta":-2, "brotherhood_delta":-2},
 
-        {"decision_id":"the_cougar", "choice_id":1, "choice_text":"You intervened on Daniel", "morality_delta":5, "brotherhood_delta":-3},
-        {"decision_id":"the_cougar", "choice_id":2, "choice_text":"You didn't intervene on Daniel", "morality_delta":-5, "brotherhood_delta":3}
+        {"decision_id":"the_cougar", "choice_id":1, "choice_text":"You stopped Daniel from killing the cougar", "morality_delta":5, "brotherhood_delta":-3},
+        {"decision_id":"the_cougar", "choice_id":2, "choice_text":"You let Daniel kill the cougar", "morality_delta":-5, "brotherhood_delta":3},
+        
+        {"decision_id":"reminding_daniel", "choice_id":1, "choice_text":"You reminded Daniel of the rules", "morality_delta":2, "brotherhood_delta":-2},
+        {"decision_id":"reminding_daniel", "choice_id":2, "choice_text":"You told Daniel that he did the right thing", "morality_delta":-2, "brotherhood_delta":2},
+        
+        {"decision_id":"confronting_daniel", "choice_id":1, "choice_text":"You protected Daniel's secret", "morality_delta":2, "brotherhood_delta":0},
+        {"decision_id":"confronting_daniel", "choice_id":2, "choice_text":"You told Daniel to stop lying to Chris", "morality_delta":-2, "brotherhood_delta":0},
+        
+        {"decision_id":"christmas_presents", "choice_id":1, "choice_text":"You bought a present, and Chris is not hurt by the police car", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"christmas_presents", "choice_id":2, "choice_text":"You stole a present, and Chris is not hurt by the police car", "morality_delta":0, "brotherhood_delta":1},
+        {"decision_id":"christmas_presents", "choice_id":3, "choice_text":"You bought and stole a present, and Chris is not hurt by the police car", "morality_delta":0, "brotherhood_delta":2},
+        {"decision_id":"christmas_presents", "choice_id":4, "choice_text":"You bought or stole a present, but Chris was hurt by the police car", "morality_delta":0, "brotherhood_delta":0},
     ],
  
     "decisions": [
@@ -150,6 +163,10 @@
         {"episode_id": 1, "decision_id":"promise", "decision_desc": "Promise"},
 
         {"episode_id": 2, "decision_id":"snowball", "decision_desc": "Snowball"},
-        {"episode_id": 2, "decision_id":"the_cougar", "decision_desc": "The Cougar"}
+        {"episode_id": 2, "decision_id":"the_cougar", "decision_desc": "The Cougar"},
+        {"episode_id": 2, "decision_id":"reminding_daniel", "decision_desc": "Reminding Daniel"},
+        {"episode_id": 2, "decision_id":"confronting_daniel", "decision_desc": "Confronting Daniel"},
+        {"episode_id": 2, "decision_id":"christmas_presents", "decision_desc": "Christmas Presents"},
+        
     ]
 }
