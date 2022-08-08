@@ -125,7 +125,7 @@
         {"decision_id":"christmas_presents", "choice_id":1, "choice_text":"You bought a present, and Chris is not hurt by the police car", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"christmas_presents", "choice_id":2, "choice_text":"You stole a present, and Chris is not hurt by the police car", "morality_delta":0, "brotherhood_delta":1},
         {"decision_id":"christmas_presents", "choice_id":3, "choice_text":"You bought and stole a present, and Chris is not hurt by the police car", "morality_delta":0, "brotherhood_delta":2},
-        {"decision_id":"christmas_presents", "choice_id":4, "choice_text":"You bought or stole a present, but Chris was hurt by the police car", "morality_delta":0, "brotherhood_delta":0},
+        {"decision_id":"christmas_presents", "choice_id":4, "choice_text":"You bought or stole a present, but Chris was hurt by the police car", "morality_delta":0, "brotherhood_delta":0}
     ],
  
     "decisions": [
@@ -166,7 +166,7 @@
         {"episode_id": 2, "decision_id":"the_cougar", "decision_desc": "The Cougar"},
         {"episode_id": 2, "decision_id":"reminding_daniel", "decision_desc": "Reminding Daniel"},
         {"episode_id": 2, "decision_id":"confronting_daniel", "decision_desc": "Confronting Daniel"},
-        {"episode_id": 2, "decision_id":"christmas_presents", "decision_desc": "Christmas Presents"},
+        {"episode_id": 2, "decision_id":"christmas_presents", "decision_desc": "Christmas Presents"}
         
     ]
 }
